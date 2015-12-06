@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<!--	TITLE 	!-->
+		<title>G-House Control</title>
+		<!--	STYLE 	!-->
+		<link rel="stylesheet" media="screen and (min-device-width: 1280px)" href="css/index.css" />
+		<link rel="stylesheet" media="screen and (max-device-width: 414px)" href="css/mobile.css" />
+		<link rel="stylesheet" media="screen and (min-device-width: 415px) and (max-device-width: 1279px)" href="css/tablets.css" />
+
+		<!--	METAS 	!-->
+		<meta name="description" content="">
+	 	<meta property="og:title" content=""/>
+		<meta property="og:type" content="article"/>
+		<meta property="og:url" content=""/>
+		<meta property="og:description" content="" />
+		<!--	VIEWPORT 	!-->
+		<meta name="viewport" content="initial-scale=1.0">
+	
+		<!--	GOOGLE FONTS 	!-->
+		<link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+		<!--	PHP 	!-->
+		
+		<!--	JAVASCRIPT	!-->
+		
+		
+				
+	</head>
+	<body onload="updateClock(); setInterval('updateClock()', 1000 )">
+		<!--	MAIN BODY STARTING HERE		!-->
+		<div class="content">
+			<div class="top">
+				<div class="top-left">
+					<font class="topTime" id="timeTop">Loading...</font>
+					<font class="topDate" id="dateTop">Loading...</font>
+					
+
+				</div>
+				<div class="top-right">
+					<font class="top-right-font">Temperature: 23.423</font>
+					<img src="" class="top-right-img">
+				</div>
+			</div>
+			<div class="middle">
+				<div class="middle-cont">
+					<div class="left-middle">
+						<font class="lmfont">Dashboard</font><br>
+						<font class="lmfontHeader">Control the house</font>
+						<div class="box-layout">
+							<!-- read the status of these boxes from a txtfile ;) and write of course-->
+							<div class="box1 box" id="lamp"><img src="images/light.png" class="box1img"></div>
+							<div class="box" id="readNews"></div>
+							<div class="box" id="displayOrarend"></div>
+							<div class="box" id=""></div>
+
+						</div>
+					</div>
+					<div class="right-middle">
+
+					</div>
+				</div>
+			</div>
+			<div class="bottom">
+
+			</div>
+		</div>
+		<!--	ENDING HERE		!-->
+		<!--	JQUERY LINK 	 !-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script>
+			$("#lamp").click(function(){
+				//check if it is a 1 or not
+				$("#lamp").css("background","#2CC990");
+			});
+			$(document).ready(function(){
+				var d = new Date();
+
+				var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+				var month = d.getMonth()+1;
+				var day = d.getDate();
+
+				var output = d.getFullYear() + '/' +
+				    (month<10 ? '0' : '') + month + '/' +
+				    (day<10 ? '0' : '') + day;
+
+				$("#dateTop").text(output);
+				function updateTime(){
+				    var currentTime = new Date()
+				    var hours = currentTime.getHours()
+				    var minutes = currentTime.getMinutes()
+				    if (minutes < 10){
+				        minutes = "0" + minutes
+				    }
+				    var t_str = hours + ":" + minutes + " ";
+				    if(hours > 11){
+				        t_str += "PM";
+				    } else {
+				        t_str += "AM";
+				    }
+				    $("#timeTop").text(t_str);
+				}
+				setInterval(updateTime, 1000);
+				
+			});
+		</script>
+	</body>
+</html>
